@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tribute Store API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": { "name": "Authentication", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Request a bearer token.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tributecenteronline.com/token/",
+            "headers": [
+              { "name": "Content-Type", "value": "application/x-www-form-urlencoded" },
+              { "name": "f-hostname", "value": "{{hostname}}" },
+              { "name": "f-provider", "value": "{{provider}}" }
+            ],
+            "body": { "type": "text", "data": "grant_type=password&username=&password=&scope=external-api" }
+          },
+          "docs": "Exchange a funeral home's HostName/UserName/Password triple for a short-lived HTML bearer token."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Serving Locations", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Create or update a serving location.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tributecenteronline.com/api/external-location/post",
+            "body": { "type": "json", "data": "{\"Id\":\"\",\"LocationType\":\"Funeral Home\",\"Name\":\"\",\"CouldServeObituary\":true}" }
+          },
+          "docs": "Push a funeral-home serving location (rooftop). Returns the Tribute Store SERVING_LOCATION_ID."
+        },
+        {
+          "info": { "name": "Get a serving location.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.tributecenteronline.com/api/locations/{{servingLocationId}}" },
+          "docs": "Retrieve a serving location by its Tribute Store SERVING_LOCATION_ID."
+        },
+        {
+          "info": { "name": "List all serving locations.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.tributecenteronline.com/api/locations/" },
+          "docs": "Return all serving locations for the authenticated funeral home."
+        },
+        {
+          "info": { "name": "List location types.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.tributecenteronline.com/api/locations/getlocationtypes" },
+          "docs": "Return the predefined location types (Cemetery, Church, Funeral Home, Memorial)."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Obituaries", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Create or update an obituary case.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tributecenteronline.com/api/external-case/post",
+            "body": { "type": "json", "data": "{\"CaseId\":\"\",\"FirstName\":\"\",\"LastName\":\"\",\"DeathDate\":\"2015-09-01T00:00:00\",\"IsPublished\":true}" }
+          },
+          "docs": "Push an obituary case. Returns the Tribute Store OBITUARY_ID and auto-provisions a store page."
+        },
+        {
+          "info": { "name": "Get an obituary.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.tributecenteronline.com/api/obituaries/GetObituary/{{obituaryId}}" },
+          "docs": "Retrieve the fully specified obituary object by its Tribute Store OBITUARY_ID."
+        },
+        {
+          "info": { "name": "List obituary summaries.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.tributecenteronline.com/api/obituaries?$orderby=DeathDate desc&$skip=20&$top=10" },
+          "docs": "List obituary summaries with OData paging and sorting ($orderby, $skip, $top)."
+        }
+      ]
+    }
+  ]
+}

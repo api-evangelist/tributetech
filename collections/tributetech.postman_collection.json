@@ -1,0 +1,133 @@
+{
+  "info": {
+    "name": "Tribute Store API",
+    "description": "Partner-gated REST API from Tribute Technology for integrating funeral-home case-management systems with the Tribute Store. Authenticate a funeral home at POST /token/ (HostName/UserName/Password triple + Provider credential + allowlisted IP), then push serving locations and obituary cases. Endpoints modeled from the public Tribute Store API Documentation 1.1 (March 2019). Base URL: https://api.tributecenteronline.com (production) or https://api.demo.tributecenteronline.com (demo).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      { "key": "token", "value": "{{bearerToken}}", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.tributecenteronline.com", "type": "string" },
+    { "key": "bearerToken", "value": "", "type": "string" },
+    { "key": "provider", "value": "", "type": "string" },
+    { "key": "hostname", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Request a bearer token",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/x-www-form-urlencoded" },
+              { "key": "f-hostname", "value": "{{hostname}}" },
+              { "key": "f-provider", "value": "{{provider}}" }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "grant_type", "value": "password" },
+                { "key": "username", "value": "" },
+                { "key": "password", "value": "" },
+                { "key": "scope", "value": "external-api" }
+              ]
+            },
+            "url": { "raw": "{{baseUrl}}/token/", "host": ["{{baseUrl}}"], "path": ["token", ""] },
+            "description": "Exchange a funeral home's HostName/UserName/Password triple for a short-lived HTML bearer token."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Serving Locations",
+      "item": [
+        {
+          "name": "Create or update a serving location",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"Id\": \"\",\n  \"LocationType\": \"Funeral Home\",\n  \"Name\": \"\",\n  \"Address1\": \"\",\n  \"Address2\": \"\",\n  \"City\": \"\",\n  \"State\": \"\",\n  \"Country\": \"US\",\n  \"Phone\": \"\",\n  \"PostalCode\": \"\",\n  \"WebSite\": \"\",\n  \"Email\": \"\",\n  \"Fax\": \"\",\n  \"CouldServeObituary\": true\n}" },
+            "url": { "raw": "{{baseUrl}}/api/external-location/post", "host": ["{{baseUrl}}"], "path": ["api", "external-location", "post"] },
+            "description": "Push a funeral-home serving location (rooftop). Returns the Tribute Store SERVING_LOCATION_ID."
+          }
+        },
+        {
+          "name": "Get a serving location",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/api/locations/{{servingLocationId}}", "host": ["{{baseUrl}}"], "path": ["api", "locations", "{{servingLocationId}}"] },
+            "description": "Retrieve a serving location by its Tribute Store SERVING_LOCATION_ID."
+          }
+        },
+        {
+          "name": "List all serving locations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/api/locations/", "host": ["{{baseUrl}}"], "path": ["api", "locations", ""] },
+            "description": "Return all serving locations for the authenticated funeral home."
+          }
+        },
+        {
+          "name": "List location types",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/api/locations/getlocationtypes", "host": ["{{baseUrl}}"], "path": ["api", "locations", "getlocationtypes"] },
+            "description": "Return the predefined location types (Cemetery, Church, Funeral Home, Memorial)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Obituaries",
+      "item": [
+        {
+          "name": "Create or update an obituary case",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"CaseId\": \"\",\n  \"ProviderName\": \"{{provider}}\",\n  \"FirstName\": \"\",\n  \"LastName\": \"\",\n  \"BirthDate\": \"1926-09-01T00:00:00\",\n  \"DeathDate\": \"2015-09-01T00:00:00\",\n  \"Services\": [],\n  \"Obituary\": \"\",\n  \"Photo\": \"\",\n  \"IsPhotoChanged\": true,\n  \"IsPublished\": true\n}" },
+            "url": { "raw": "{{baseUrl}}/api/external-case/post", "host": ["{{baseUrl}}"], "path": ["api", "external-case", "post"] },
+            "description": "Push an obituary case. Returns the Tribute Store OBITUARY_ID and auto-provisions a store page."
+          }
+        },
+        {
+          "name": "Get an obituary",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/api/obituaries/GetObituary/{{obituaryId}}", "host": ["{{baseUrl}}"], "path": ["api", "obituaries", "GetObituary", "{{obituaryId}}"] },
+            "description": "Retrieve the fully specified obituary object by its Tribute Store OBITUARY_ID."
+          }
+        },
+        {
+          "name": "List obituary summaries",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/obituaries?$orderby=DeathDate desc&$skip=20&$top=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "obituaries"],
+              "query": [
+                { "key": "$orderby", "value": "DeathDate desc" },
+                { "key": "$skip", "value": "20" },
+                { "key": "$top", "value": "10" }
+              ]
+            },
+            "description": "List obituary summaries with OData paging and sorting."
+          }
+        }
+      ]
+    }
+  ]
+}

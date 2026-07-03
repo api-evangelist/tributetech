@@ -1,0 +1,65 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Tribute Technology
+providerId: tributetech
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Funeral Technology
+- Obituaries
+- Rate Limiting
+- Quotas
+- Partner API
+description: >-
+  The Tribute Store API documentation does not publish fixed numeric rate limits.
+  Access is instead gated up front: an integrator's requests originate from an
+  IP-allowlisted server, are authenticated per funeral home with a short-lived
+  HTML bearer token (expires_in seconds), and are scoped so that only entities
+  created for that funeral home's HostName are visible. The documentation states
+  usage expectations rather than a per-minute cap: partners should push a serving
+  location or obituary update only when the underlying information has actually
+  changed, and should not re-POST on every internal save when nothing in the API
+  contract changed.
+notes: >-
+  No numeric per-account or per-endpoint request-rate limit is documented as of
+  the review date. The primary controls are the IP allowlist, token expiration,
+  and the "push only on change" usage guidance. Confirm any operational limits
+  with Tribute Technology during partner onboarding.
+sources:
+- https://awheeler.funeraltechweb2.com/additional-service-info/file/3/Tribute%20Store%20API%20Documentation%201.1.pdf
+- https://www.tributetech.com/
+responseCodes:
+  authFailure: 400
+limits:
+- name: Request Rate
+  scope: partner
+  metric: requests
+  limit: not published
+  notes: No fixed numeric request-rate limit is documented for the Tribute Store API.
+- name: IP Allowlist
+  scope: provider
+  metric: source-ip
+  limit: allowlisted only
+  notes: Requests must originate from an IP added to the Provider's allowlist.
+- name: Token Lifetime
+  scope: funeral-home
+  metric: seconds
+  limit: expires_in (per token response)
+  notes: The bearer token is valid only for the number of seconds returned by POST /token/.
+- name: Update Frequency
+  scope: resource
+  metric: writes
+  limit: on-change only
+  notes: Documentation asks partners to POST location/obituary updates only when the data actually changes.
+policies:
+- name: Push On Change Only
+  description: Do not push obituary or serving-location updates when the information is not changing (for example, on every internal save).
+- name: Token Refresh
+  description: Re-request a bearer token from POST /token/ when the current token's expires_in window elapses.
+- name: Scoped Visibility
+  description: A token only exposes entities created for its associated funeral home HostName.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

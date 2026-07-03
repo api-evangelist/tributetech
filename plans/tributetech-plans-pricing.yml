@@ -1,0 +1,108 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Tribute Technology
+providerId: tributetech
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Funeral Technology
+- Obituaries
+- Funeral Homes
+- Plans
+- Partner API
+description: >-
+  Tribute Technology does not sell the Tribute Store API as a metered developer
+  product. The API is a partner integration surface bundled with a funeral home's
+  Tribute Technology subscription (websites, management software, e-commerce, and
+  Tribute Pay). Integrators are onboarded by Tribute Technology with a Provider
+  credential and an IP allowlist rather than through a public pricing page.
+  Funeral-home-facing subscription pricing is published for some products (for
+  example Tribute Management Software has been advertised at around $49/month with
+  no per-user fees); the API itself carries no separately published per-call
+  price. Treat all figures below as directional and reconcile with Tribute
+  Technology directly.
+notes: >-
+  There is no self-service developer plan or public API price list. API access is
+  established through a partner/integration agreement. Verify current
+  funeral-home subscription pricing and any partner/API terms with Tribute
+  Technology sales.
+sources:
+- https://www.tributetech.com/
+- https://www.tributetech.com/products
+- https://awheeler.funeraltechweb2.com/additional-service-info/file/3/Tribute%20Store%20API%20Documentation%201.1.pdf
+plans:
+- id: tributetech-partner-integration
+  name: Partner Integration (Tribute Store API)
+  type: partner
+  description: >-
+    Gated access to the Tribute Store API for funeral-home case-management and
+    software partners. Provisioned by Tribute Technology with a Provider
+    credential, an IP allowlist, and per-funeral-home HostName/UserName/Password
+    triples. No published per-call price; established via partner agreement.
+  entries:
+  - label: API Access
+    name: partner_api_access
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: US-CA
+    unit: 1
+    price: contact Tribute Technology (partner agreement)
+    userMultiplied: false
+  elements:
+  - name: Serving Locations API
+  - name: Obituaries API
+  - name: Bearer Token Authentication
+  - name: IP Allowlist
+- id: tributetech-management-software
+  name: Tribute Management Software (Funeral Home Subscription)
+  type: subscription
+  description: >-
+    Funeral-home-facing subscription for Tribute Technology's management software.
+    Advertised around $49/month with no per-user fees. Bundles the platform that
+    the Tribute Store API integrates with. Directional; confirm with Tribute
+    Technology.
+  entries:
+  - label: Monthly Subscription
+    name: management_software_monthly
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: US-CA
+    unit: 1
+    price: ~$49/month per funeral home (advertised; verify)
+    userMultiplied: false
+  elements:
+  - name: Funeral Home Management Software
+  - name: No Per-User Fees
+- id: tributetech-platform-bundle
+  name: Platform Bundle (Websites, E-commerce, Tribute Pay)
+  type: custom
+  description: >-
+    Custom-quoted bundle of Tribute Technology products - memorial websites,
+    Tribute Store e-commerce (flowers and personalized products), obituary tools,
+    and Tribute Pay funeral funding/payments. Pricing varies by products selected
+    and is not publicly listed for all products.
+  entries:
+  - label: Custom Bundle
+    name: platform_bundle
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: US-CA
+    unit: 1
+    price: contact sales (varies by products)
+    userMultiplied: false
+  elements:
+  - name: Memorial Websites
+  - name: Tribute Store E-commerce
+  - name: Obituary Tools
+  - name: Tribute Pay
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

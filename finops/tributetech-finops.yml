@@ -1,0 +1,100 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Tribute Technology
+providerId: tributetech
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Funeral Technology
+- Obituaries
+- Funeral Homes
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Tribute Technology spend. The Tribute Store API is not billed as
+  a metered developer product - it is a partner integration surface bundled with
+  a funeral home's Tribute Technology subscription. For a funeral home, the cost
+  driver is the software subscription (management software has been advertised
+  around $49/month) plus any add-on products (memorial websites, Tribute Store
+  e-commerce, obituary tools) and transaction-based Tribute Pay processing fees on
+  payments and e-commerce orders. For an integration partner, direct API cost is
+  established by a partner agreement rather than per-call metering; the partner's
+  own spend is the engineering and infrastructure to run the allowlisted
+  integration server.
+notes: >-
+  Per-call API pricing is not published; the API is bundled. Subscription and
+  transaction figures are directional - reconcile funeral-home subscription
+  tiers, e-commerce revenue share, and Tribute Pay processing rates directly with
+  Tribute Technology.
+sources:
+- https://www.tributetech.com/
+- https://www.tributetech.com/products
+- https://www.tributetech.com/tribute-pay
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Tribute Technology
+serviceCategory: Software and E-commerce
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+  - Adjustment
+focusColumns:
+  ServiceName: Tribute Technology Platform
+  ServiceCategory: Software and E-commerce
+  ProviderName: Tribute Technology
+  PublisherName: Tribute Technology
+  InvoiceIssuerName: Tribute Technology
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: software_subscription
+  description: Monthly funeral-home subscription for management software and website hosting.
+  unit: months
+  aggregation: sum
+  dimensions:
+  - funeral_home
+  - product
+- name: ecommerce_orders
+  description: Tribute Store e-commerce orders (flowers and personalized products) placed on obituary pages.
+  unit: orders
+  aggregation: sum
+  dimensions:
+  - funeral_home
+  - obituary
+- name: payment_processing
+  description: Tribute Pay payment and funeral-funding transactions, billed on a processing-fee basis.
+  unit: transactions
+  aggregation: sum
+  dimensions:
+  - funeral_home
+- name: partner_integration
+  description: Integration-partner engineering and infrastructure to run the allowlisted Tribute Store API integration (no per-call Tribute fee).
+  unit: hours
+  aggregation: sum
+  dimensions:
+  - partner
+principles:
+- name: Visibility
+  description: Track subscription cost per funeral home per product, and separate transaction-based Tribute Pay and e-commerce charges from fixed subscription spend.
+- name: Allocation
+  description: Attribute subscription and transaction costs per funeral-home rooftop (serving location) and per product bundle.
+- name: Optimization
+  description: Right-size product bundles per rooftop; avoid redundant API writes (push only on change) to keep integration infrastructure lean.
+- name: Accountability
+  description: Assign an owner per funeral-home account; review monthly subscription plus transaction fees against volume of obituaries and orders.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

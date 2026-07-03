@@ -1,0 +1,84 @@
+aid: tributetech
+name: Tribute Technology
+review:
+  question: Does Tribute Technology expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-03'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Tribute Technology's documented partner
+    surface - the Tribute Store API - is request/response REST over HTTP(S) with
+    bearer-token auth. There is no server-push transport (WebSocket or SSE)
+    documented anywhere in the Tribute Store API. Integration is push-based in the
+    other direction: the partner POSTs serving locations and obituary cases into
+    the Tribute Store, which then provisions a store page. Nothing streams back.
+findings:
+  summary: |
+    Tribute Technology does not publish a documented public WebSocket API.
+    Tribute Technology is a funeral-home technology company (Middleton,
+    Wisconsin) serving 9,000+ funeral homes across the US and Canada with
+    obituary publishing, memorial websites, funeral-home management software,
+    payments (Tribute Pay), and e-commerce via the Tribute Store. Its documented
+    developer surface is the Tribute Store API, a REST-style JSON API for
+    partners integrating funeral-home case-management systems. The API is
+    partner-gated: an integrator receives a {Provider} credential plus an IP
+    allowlist, and each funeral home receives a {HostName, UserName, Password}
+    triple that is exchanged at POST /token/ for a short-lived HTML bearer token.
+    All other endpoints are request/response REST. No realtime, bidirectional, or
+    streaming WebSocket (ws:// or wss://) endpoint is documented.
+  accessModel: |
+    Partner/gated, not public self-service. There is no open developer portal,
+    signup, or API key issuance on tributetech.com. Credentials are provisioned
+    manually or in bulk by Tribute Technology, and every request is scoped to a
+    single funeral home by its bearer token. The endpoint surface below is drawn
+    verbatim from the publicly circulated "Tribute Store API Documentation 1.1"
+    (updated March 25, 2019), a PDF distributed to integration partners; the API
+    itself is not callable without provisioned credentials and an allowlisted IP.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.tributecenteronline.com
+      documented: true
+      note: >-
+        Tribute Store API. The 2019 documentation lists http:// base URLs
+        (production http://api.tributecenteronline.com/, development
+        http://api.demo.tributecenteronline.com/); https is assumed for modern use.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in the Tribute Store API.
+  endpointsModeledRest:
+    - POST   https://api.tributecenteronline.com/token/
+    - POST   https://api.tributecenteronline.com/api/external-location/post
+    - GET    https://api.tributecenteronline.com/api/locations/{servingLocationId}
+    - GET    https://api.tributecenteronline.com/api/locations/
+    - GET    https://api.tributecenteronline.com/api/locations/getlocationtypes
+    - POST   https://api.tributecenteronline.com/api/external-case/post
+    - GET    https://api.tributecenteronline.com/api/obituaries/GetObituary/{obituaryId}
+    - GET    https://api.tributecenteronline.com/api/obituaries
+  odataNote: |
+    GET /api/obituaries supports standard OData query options ($orderby, $skip,
+    $top) for paging and sorting obituary summaries.
+sources:
+  - url: https://www.tributetech.com/
+    type: Website
+    note: Company site; products span websites, management software, obituaries, Tribute Pay, e-commerce.
+  - url: https://awheeler.funeraltechweb2.com/additional-service-info/file/3/Tribute%20Store%20API%20Documentation%201.1.pdf
+    type: Documentation
+    note: Tribute Store API Documentation 1.1 (March 25, 2019); publicly circulated partner PDF. All REST, bearer auth, no WebSocket.
+  - url: https://www.linkedin.com/company/tributetechnology
+    type: LinkedIn
+    note: Company profile; 9,000+ funeral homes, US and Canada, 201-500 employees.
+  - url: https://www.tributetech.com/tribute-obituary-writer
+    type: Website
+    note: AI Tribute Obituary Writer product page.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. Tribute Technology's only documented
+    developer API (the Tribute Store API) is request/response REST over HTTP(S),
+    partner-gated, with a push-in integration model (partner POSTs obituaries and
+    locations). No server-push transport exists to model, so no AsyncAPI document
+    was created.
