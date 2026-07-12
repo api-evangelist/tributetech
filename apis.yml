@@ -103,6 +103,10 @@ apis:
     single obituary or list obituary summaries with OData paging/sorting. Endpoints
     modeled from the public Tribute Store API Documentation 1.1.
 common:
+- type: DomainSecurity
+  url: security/tributetech-domain-security.yml
+- type: Authentication
+  url: authentication/tributetech-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/tributetechnology
 - type: Website
@@ -115,6 +119,8 @@ common:
   url: rate-limits/tributetech-rate-limits.yml
 - type: FinOps
   url: finops/tributetech-finops.yml
+- url: https://www.tributetech.com/blog
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
