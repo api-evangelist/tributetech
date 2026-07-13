@@ -1,0 +1,14 @@
+{
+  "repo": "tributetech",
+  "feeds": [
+    {
+      "source": "https://www.tributetech.com/blog",
+      "feed_url": "https://www.tributetech.com/feed/rss2",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    }
+  ],
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 6
+}
