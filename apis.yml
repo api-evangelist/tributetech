@@ -103,6 +103,8 @@ apis:
     single obituary or list obituary summaries with OData paging/sorting. Endpoints
     modeled from the public Tribute Store API Documentation 1.1.
 common:
+- type: AgenticAccess
+  url: agentic-access/tributetech-agentic-access.yml
 - type: DomainSecurity
   url: security/tributetech-domain-security.yml
 - type: Authentication
