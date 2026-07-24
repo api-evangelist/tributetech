@@ -1,0 +1,222 @@
+openapi: 3.0.3
+info:
+  title: Tribute Store Authentication Obituaries API
+  description: 'The Tribute Store API is a REST-style JSON API from Tribute Technology for partners who integrate funeral-home case-management systems with the Tribute Store. It lets an integrator authenticate a funeral home, push its serving locations (rooftops), and push obituary cases (the deceased, their obituary text, service events, and a photo). Each successfully posted obituary automatically provisions a personalized Tribute Store page for the deceased, reachable at the store base URL with an ?oId={OBITUARY_ID} query string.
+
+
+    Access is partner-gated. Tribute Technology issues each integrator a {Provider} credential plus an IP allowlist, and issues each funeral home a {HostName, UserName, Password} triple. The triple is exchanged at the token endpoint for a short-lived HTML bearer token that scopes all subsequent requests to that funeral home.
+
+
+    This document was modeled from the public "Tribute Store API Documentation 1.1" (updated March 25, 2019). Field lists and endpoints are taken verbatim from that document; response object schemas beyond the documented sample fields are omitted rather than fabricated.'
+  version: '1.1'
+  contact:
+    name: Tribute Technology
+    url: https://www.tributetech.com
+servers:
+- url: https://api.tributecenteronline.com
+  description: Production
+- url: https://api.demo.tributecenteronline.com
+  description: Development / Demo
+security:
+- bearerAuth: []
+tags:
+- name: Obituaries
+  description: Obituary cases pushed to the Tribute Store, and their retrieval.
+paths:
+  /api/external-case/post:
+    post:
+      operationId: postExternalCase
+      tags:
+      - Obituaries
+      summary: Create or update an obituary case
+      description: Push an obituary case for the deceased, including name, birth/death dates, obituary text, service events, and an optional base64 photo thumbnail. CaseId is your unique identifier and acts as an add/update key. Returns the Tribute Store OBITUARY_ID on success.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExternalCase'
+      responses:
+        '200':
+          description: The Tribute Store obituary identifier.
+          content:
+            application/json:
+              schema:
+                type: integer
+                description: OBITUARY_ID
+        '400':
+          description: Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+  /api/obituaries/GetObituary/{obituaryId}:
+    get:
+      operationId: getObituary
+      tags:
+      - Obituaries
+      summary: Get an obituary
+      description: Retrieve the fully specified obituary object by its Tribute Store OBITUARY_ID (returned from a successful external-case post). The full object schema is not enumerated in the source documentation.
+      parameters:
+      - name: obituaryId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: The fully specified obituary object.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /api/obituaries:
+    get:
+      operationId: listObituaries
+      tags:
+      - Obituaries
+      summary: List obituary summaries
+      description: Return a JSON array of obituary summary objects (id, image URL, name, birth/death dates). Supports standard OData query options for paging and sorting.
+      parameters:
+      - name: $orderby
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'OData ordering, for example: DeathDate desc'
+      - name: $skip
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: $top
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Array of obituary summary objects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ObituarySummary'
+components:
+  schemas:
+    ServiceLocation:
+      type: object
+      required:
+      - Name
+      - Address1
+      - City
+      - State
+      - PostalCode
+      - Phone
+      properties:
+        Name:
+          type: string
+        Address1:
+          type: string
+        Address2:
+          type: string
+        City:
+          type: string
+        State:
+          type: string
+        PostalCode:
+          type: string
+        Phone:
+          type: string
+    ExternalCase:
+      type: object
+      required:
+      - CaseId
+      - FirstName
+      - LastName
+      - DeathDate
+      properties:
+        CaseId:
+          type: string
+          description: Your unique identifier for the obituary (add/update key).
+        ProviderName:
+          type: string
+          description: Your Provider credential string.
+        FirstName:
+          type: string
+        LastName:
+          type: string
+        BirthDate:
+          type: string
+          format: date-time
+        DeathDate:
+          type: string
+          format: date-time
+        Services:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceEvent'
+          description: Service events such as visitation or service.
+        Obituary:
+          type: string
+          description: The obituary text of the deceased.
+        Photo:
+          type: string
+          description: Base64-encoded 60x70 pixel thumbnail photo of the deceased.
+        IsPhotoChanged:
+          type: boolean
+          default: false
+        IsPublished:
+          type: boolean
+    ServiceEvent:
+      type: object
+      required:
+      - Type
+      - StartTime
+      - Location
+      properties:
+        Type:
+          type: string
+          description: Event type, for example Visitation.
+        StartTime:
+          type: string
+          format: date-time
+        EndTime:
+          type: string
+          format: date-time
+        Location:
+          $ref: '#/components/schemas/ServiceLocation'
+    ObituarySummary:
+      type: object
+      properties:
+        Id:
+          type: integer
+          description: The Tribute Store OBITUARY_ID.
+        ImageUrl:
+          type: string
+        Name:
+          type: string
+        FirstName:
+          type: string
+        MiddleName:
+          type: string
+        LastName:
+          type: string
+        BirthDate:
+          type: string
+          format: date-time
+        DeathDate:
+          type: string
+          format: date-time
+    Message:
+      type: object
+      properties:
+        Message:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'HTML bearer token obtained from POST /token/. Include as Authorization: Bearer {TOKEN}.'
