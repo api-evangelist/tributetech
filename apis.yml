@@ -13,7 +13,20 @@ description: Tribute Technology is a funeral-home technology company serving ove
   deceased. Access requires a Provider credential, an IP allowlist, and a
   per-funeral-home HostName/UserName/Password triple exchanged for a bearer token;
   there is no public self-service developer portal.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/tributetech.png
 tags:
 - Funeral Technology
 - Obituaries
@@ -27,81 +40,56 @@ modified: '2026-07-03'
 specificationVersion: '0.19'
 apis:
 - aid: tributetech:tributetech-authentication-api
-  name: Tribute Store Authentication API
+  name: Tribute Technology Authentication API
+  description: Exchange a funeral-home credential triple for a bearer token.
+  humanURL: https://www.tributetech.com/
+  baseURL: https://api.tributecenteronline.com
   tags:
   - Authentication
-  - Tokens
-  - Funeral Homes
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.tributetech.com/
-  baseURL: https://api.tributecenteronline.com
-  endpointsModeled: true
   properties:
-  - url: https://awheeler.funeraltechweb2.com/additional-service-info/file/3/Tribute%20Store%20API%20Documentation%201.1.pdf
-    type: Documentation
-  - url: openapi/tributetech-openapi.yml
-    type: OpenAPI
-  - url: collections/tributetech.postman_collection.json
-    type: PostmanCollection
-  - url: collections/tributetech.opencollection.json
-    type: OpenCollection
-  description: Exchange a funeral home's HostName/UserName/Password triple (scoped
-    to your integrator Provider credential) for a short-lived HTML bearer token via
-    POST /token/. The token identifies the funeral home on all other endpoints.
-    Requires an IP allowlist entry. Endpoints modeled from the public Tribute Store
-    API Documentation 1.1 (March 2019); the API is partner-gated with no public
-    self-service portal.
-- aid: tributetech:tributetech-serving-locations-api
-  name: Tribute Store Serving Locations API
-  tags:
-  - Serving Locations
-  - Funeral Homes
-  - Rooftops
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.tributetech.com/
-  baseURL: https://api.tributecenteronline.com
-  endpointsModeled: true
-  properties:
-  - url: https://awheeler.funeraltechweb2.com/additional-service-info/file/3/Tribute%20Store%20API%20Documentation%201.1.pdf
-    type: Documentation
-  - url: openapi/tributetech-openapi.yml
-    type: OpenAPI
-  - url: collections/tributetech.postman_collection.json
-    type: PostmanCollection
-  - url: collections/tributetech.opencollection.json
-    type: OpenCollection
-  description: Create or update funeral-home serving locations (rooftops) that
-    obituaries attach to, retrieve a location by its Tribute Store serving-location
-    id, list all locations, and list the predefined location types (Cemetery,
-    Church, Funeral Home, Memorial). Posting a previously used application Id
-    updates the existing record. Endpoints modeled from the public Tribute Store
-    API Documentation 1.1.
+  - type: OpenAPI
+    url: openapi/tributetech-authentication-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://awheeler.funeraltechweb2.com/additional-service-info/file/3/Tribute%20Store%20API%20Documentation%201.1.pdf
+  - type: PostmanCollection
+    url: collections/tributetech.postman_collection.json
+  - type: OpenCollection
+    url: collections/tributetech.opencollection.json
 - aid: tributetech:tributetech-obituaries-api
-  name: Tribute Store Obituaries API
+  name: Tribute Technology Obituaries API
+  description: Obituary cases pushed to the Tribute Store, and their retrieval.
+  humanURL: https://www.tributetech.com/
+  baseURL: https://api.tributecenteronline.com
   tags:
   - Obituaries
-  - Cases
-  - Memorials
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.tributetech.com/tribute-obituary-writer
-  baseURL: https://api.tributecenteronline.com
-  endpointsModeled: true
   properties:
-  - url: https://awheeler.funeraltechweb2.com/additional-service-info/file/3/Tribute%20Store%20API%20Documentation%201.1.pdf
-    type: Documentation
-  - url: openapi/tributetech-openapi.yml
-    type: OpenAPI
-  - url: collections/tributetech.postman_collection.json
-    type: PostmanCollection
-  - url: collections/tributetech.opencollection.json
-    type: OpenCollection
-  description: Push obituary cases - the deceased, obituary text, service events
-    (visitation, service), and a base64 photo thumbnail - via POST
-    /api/external-case/post, using your CaseId as an add/update key. Each success
-    returns a Tribute Store OBITUARY_ID and auto-provisions a personalized Tribute
-    Store page reachable at the store base URL with ?oId={OBITUARY_ID}. Retrieve a
-    single obituary or list obituary summaries with OData paging/sorting. Endpoints
-    modeled from the public Tribute Store API Documentation 1.1.
+  - type: OpenAPI
+    url: openapi/tributetech-obituaries-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://awheeler.funeraltechweb2.com/additional-service-info/file/3/Tribute%20Store%20API%20Documentation%201.1.pdf
+  - type: PostmanCollection
+    url: collections/tributetech.postman_collection.json
+  - type: OpenCollection
+    url: collections/tributetech.opencollection.json
+- aid: tributetech:tributetech-serving-locations-api
+  name: Tribute Technology Serving Locations API
+  description: Funeral-home rooftops (serving locations) that obituaries attach to.
+  humanURL: https://www.tributetech.com/
+  baseURL: https://api.tributecenteronline.com
+  tags:
+  - Serving Locations
+  properties:
+  - type: OpenAPI
+    url: openapi/tributetech-serving-locations-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://awheeler.funeraltechweb2.com/additional-service-info/file/3/Tribute%20Store%20API%20Documentation%201.1.pdf
+  - type: PostmanCollection
+    url: collections/tributetech.postman_collection.json
+  - type: OpenCollection
+    url: collections/tributetech.opencollection.json
 common:
 - type: AgenticAccess
   url: agentic-access/tributetech-agentic-access.yml
