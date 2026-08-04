@@ -1,0 +1,18 @@
+{
+  "provider": "tributetech",
+  "sources": [
+    "tributetech-authentication-api-openapi.yml",
+    "tributetech-obituaries-api-openapi.yml",
+    "tributetech-serving-locations-api-openapi.yml"
+  ],
+  "outputs": [
+    "tributetech-authentication-api-openapi.yml",
+    "tributetech-obituaries-api-openapi.yml",
+    "tributetech-serving-locations-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
