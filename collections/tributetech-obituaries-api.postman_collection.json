@@ -1,0 +1,407 @@
+{
+  "item": [
+    {
+      "id": "0f674d6e-542b-4d81-acaa-965a5e8dafb8",
+      "name": "Obituaries",
+      "description": {
+        "content": "Obituary cases pushed to the Tribute Store, and their retrieval.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "017422a7-e5a8-4d7f-b03e-29a37f0482f6",
+          "name": "Create or update an obituary case",
+          "request": {
+            "name": "Create or update an obituary case",
+            "description": {
+              "content": "Push an obituary case for the deceased, including name, birth/death dates, obituary text, service events, and an optional base64 photo thumbnail. CaseId is your unique identifier and acts as an add/update key. Returns the Tribute Store OBITUARY_ID on success.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "external-case",
+                "post"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"CaseId\": \"<string>\",\n  \"FirstName\": \"<string>\",\n  \"LastName\": \"<string>\",\n  \"DeathDate\": \"<dateTime>\",\n  \"ProviderName\": \"<string>\",\n  \"BirthDate\": \"<dateTime>\",\n  \"Services\": [\n    {\n      \"Type\": \"<string>\",\n      \"StartTime\": \"<dateTime>\",\n      \"Location\": {\n        \"Name\": \"<string>\",\n        \"Address1\": \"<string>\",\n        \"City\": \"<string>\",\n        \"State\": \"<string>\",\n        \"PostalCode\": \"<string>\",\n        \"Phone\": \"<string>\",\n        \"Address2\": \"<string>\"\n      },\n      \"EndTime\": \"<dateTime>\"\n    },\n    {\n      \"Type\": \"<string>\",\n      \"StartTime\": \"<dateTime>\",\n      \"Location\": {\n        \"Name\": \"<string>\",\n        \"Address1\": \"<string>\",\n        \"City\": \"<string>\",\n        \"State\": \"<string>\",\n        \"PostalCode\": \"<string>\",\n        \"Phone\": \"<string>\",\n        \"Address2\": \"<string>\"\n      },\n      \"EndTime\": \"<dateTime>\"\n    }\n  ],\n  \"Obituary\": \"<string>\",\n  \"Photo\": \"<string>\",\n  \"IsPhotoChanged\": false,\n  \"IsPublished\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "432d2bc2-123d-485c-9b07-a017ae5c2665",
+              "name": "The Tribute Store obituary identifier.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "external-case",
+                    "post"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"CaseId\": \"<string>\",\n  \"FirstName\": \"<string>\",\n  \"LastName\": \"<string>\",\n  \"DeathDate\": \"<dateTime>\",\n  \"ProviderName\": \"<string>\",\n  \"BirthDate\": \"<dateTime>\",\n  \"Services\": [\n    {\n      \"Type\": \"<string>\",\n      \"StartTime\": \"<dateTime>\",\n      \"Location\": {\n        \"Name\": \"<string>\",\n        \"Address1\": \"<string>\",\n        \"City\": \"<string>\",\n        \"State\": \"<string>\",\n        \"PostalCode\": \"<string>\",\n        \"Phone\": \"<string>\",\n        \"Address2\": \"<string>\"\n      },\n      \"EndTime\": \"<dateTime>\"\n    },\n    {\n      \"Type\": \"<string>\",\n      \"StartTime\": \"<dateTime>\",\n      \"Location\": {\n        \"Name\": \"<string>\",\n        \"Address1\": \"<string>\",\n        \"City\": \"<string>\",\n        \"State\": \"<string>\",\n        \"PostalCode\": \"<string>\",\n        \"Phone\": \"<string>\",\n        \"Address2\": \"<string>\"\n      },\n      \"EndTime\": \"<dateTime>\"\n    }\n  ],\n  \"Obituary\": \"<string>\",\n  \"Photo\": \"<string>\",\n  \"IsPhotoChanged\": false,\n  \"IsPublished\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "4593",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44202a2e-1b29-4a9f-bf5a-2e7de8654d18",
+              "name": "Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "external-case",
+                    "post"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"CaseId\": \"<string>\",\n  \"FirstName\": \"<string>\",\n  \"LastName\": \"<string>\",\n  \"DeathDate\": \"<dateTime>\",\n  \"ProviderName\": \"<string>\",\n  \"BirthDate\": \"<dateTime>\",\n  \"Services\": [\n    {\n      \"Type\": \"<string>\",\n      \"StartTime\": \"<dateTime>\",\n      \"Location\": {\n        \"Name\": \"<string>\",\n        \"Address1\": \"<string>\",\n        \"City\": \"<string>\",\n        \"State\": \"<string>\",\n        \"PostalCode\": \"<string>\",\n        \"Phone\": \"<string>\",\n        \"Address2\": \"<string>\"\n      },\n      \"EndTime\": \"<dateTime>\"\n    },\n    {\n      \"Type\": \"<string>\",\n      \"StartTime\": \"<dateTime>\",\n      \"Location\": {\n        \"Name\": \"<string>\",\n        \"Address1\": \"<string>\",\n        \"City\": \"<string>\",\n        \"State\": \"<string>\",\n        \"PostalCode\": \"<string>\",\n        \"Phone\": \"<string>\",\n        \"Address2\": \"<string>\"\n      },\n      \"EndTime\": \"<dateTime>\"\n    }\n  ],\n  \"Obituary\": \"<string>\",\n  \"Photo\": \"<string>\",\n  \"IsPhotoChanged\": false,\n  \"IsPublished\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d79199f-792d-49f8-9a00-25c0dde40d2c",
+          "name": "Get an obituary",
+          "request": {
+            "name": "Get an obituary",
+            "description": {
+              "content": "Retrieve the fully specified obituary object by its Tribute Store OBITUARY_ID (returned from a successful external-case post). The full object schema is not enumerated in the source documentation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "obituaries",
+                "GetObituary",
+                ":obituaryId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "obituaryId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "04ec0272-2ade-46d3-81fc-8ca9c7f527c4",
+              "name": "The fully specified obituary object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "obituaries",
+                    "GetObituary",
+                    ":obituaryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "obituaryId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 9190.44618280629,\n  \"key_1\": \"string\",\n  \"key_2\": 6890\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "807e12a1-4972-4a54-9cd1-dd3cb7977596",
+          "name": "List obituary summaries",
+          "request": {
+            "name": "List obituary summaries",
+            "description": {
+              "content": "Return a JSON array of obituary summary objects (id, image URL, name, birth/death dates). Supports standard OData query options for paging and sorting.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "obituaries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$orderby",
+                  "value": "<string>",
+                  "description": "OData ordering, for example: DeathDate desc"
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8486e22d-f253-407a-9e8e-624cfa4ad79f",
+              "name": "Array of obituary summary objects.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "obituaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": 8409,\n    \"ImageUrl\": \"string\",\n    \"Name\": \"string\",\n    \"FirstName\": \"string\",\n    \"MiddleName\": \"string\",\n    \"LastName\": \"string\",\n    \"BirthDate\": \"1973-03-12T12:20:48.091Z\",\n    \"DeathDate\": \"1982-09-19T10:52:08.021Z\"\n  },\n  {\n    \"Id\": 7262,\n    \"ImageUrl\": \"string\",\n    \"Name\": \"string\",\n    \"FirstName\": \"string\",\n    \"MiddleName\": \"string\",\n    \"LastName\": \"string\",\n    \"BirthDate\": \"1951-02-22T06:57:51.845Z\",\n    \"DeathDate\": \"1972-02-12T05:59:19.032Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tributecenteronline.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cde75c40-70a1-4600-82bb-53e2c0a71792",
+    "name": "Tribute Store Authentication Obituaries API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Tribute Store API is a REST-style JSON API from Tribute Technology for partners who integrate funeral-home case-management systems with the Tribute Store. It lets an integrator authenticate a funeral home, push its serving locations (rooftops), and push obituary cases (the deceased, their obituary text, service events, and a photo). Each successfully posted obituary automatically provisions a personalized Tribute Store page for the deceased, reachable at the store base URL with an ?oId={OBITUARY_ID} query string.\n\nAccess is partner-gated. Tribute Technology issues each integrator a {Provider} credential plus an IP allowlist, and issues each funeral home a {HostName, UserName, Password} triple. The triple is exchanged at the token endpoint for a short-lived HTML bearer token that scopes all subsequent requests to that funeral home.\n\nThis document was modeled from the public \"Tribute Store API Documentation 1.1\" (updated March 25, 2019). Field lists and endpoints are taken verbatim from that document; response object schemas beyond the documented sample fields are omitted rather than fabricated.\n\nContact Support:\n Name: Tribute Technology",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tribute Store Authentication API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Request a bearer token for a funeral home",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tributecenteronline.com/token/",
+            "headers": [
+              {
+                "name": "f-hostname",
+                "value": ""
+              },
+              {
+                "name": "f-provider",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "username",
+                  "value": ""
+                },
+                {
+                  "name": "password",
+                  "value": ""
+                },
+                {
+                  "name": "scope",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Exchange a funeral home's {HostName, UserName, Password} triple for a short-lived HTML bearer token. The HostName is supplied in the f-hostname header and the integrator's Provider credential in the f-provider header; the username and password are supplied in a form-urlencoded body with grant_type=password and scope=external-api. The returned token identifies the funeral home on all other endpoints."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

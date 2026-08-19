@@ -1,0 +1,459 @@
+{
+  "item": [
+    {
+      "id": "17e6ec16-a6c3-4af3-821c-3842fb376e8f",
+      "name": "Serving Locations",
+      "description": {
+        "content": "Funeral-home rooftops (serving locations) that obituaries attach to.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d6a3b482-b5ad-4722-98b5-3e2661c42826",
+          "name": "Create or update a serving location (rooftop)",
+          "request": {
+            "name": "Create or update a serving location (rooftop)",
+            "description": {
+              "content": "Push a funeral-home serving location (rooftop). The Id is your application's unique identifier for the location; posting a previously used Id updates the existing record, a new Id creates one. Returns the Tribute Store SERVING_LOCATION_ID on success.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "external-location",
+                "post"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Id\": \"<string>\",\n  \"LocationType\": \"<string>\",\n  \"Name\": \"<string>\",\n  \"Address1\": \"<string>\",\n  \"Address2\": \"<string>\",\n  \"City\": \"<string>\",\n  \"State\": \"<string>\",\n  \"Country\": \"<string>\",\n  \"Phone\": \"<string>\",\n  \"PostalCode\": \"<string>\",\n  \"WebSite\": \"<string>\",\n  \"Email\": \"<string>\",\n  \"Fax\": \"<string>\",\n  \"CouldServeObituary\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "37e3b47b-70dd-4664-99dc-dd029359d980",
+              "name": "The Tribute Store serving location identifier.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "external-location",
+                    "post"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Id\": \"<string>\",\n  \"LocationType\": \"<string>\",\n  \"Name\": \"<string>\",\n  \"Address1\": \"<string>\",\n  \"Address2\": \"<string>\",\n  \"City\": \"<string>\",\n  \"State\": \"<string>\",\n  \"Country\": \"<string>\",\n  \"Phone\": \"<string>\",\n  \"PostalCode\": \"<string>\",\n  \"WebSite\": \"<string>\",\n  \"Email\": \"<string>\",\n  \"Fax\": \"<string>\",\n  \"CouldServeObituary\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "8579",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "070c60a6-4d40-4cbf-b18e-2ceef37b6eaa",
+              "name": "Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "external-location",
+                    "post"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Id\": \"<string>\",\n  \"LocationType\": \"<string>\",\n  \"Name\": \"<string>\",\n  \"Address1\": \"<string>\",\n  \"Address2\": \"<string>\",\n  \"City\": \"<string>\",\n  \"State\": \"<string>\",\n  \"Country\": \"<string>\",\n  \"Phone\": \"<string>\",\n  \"PostalCode\": \"<string>\",\n  \"WebSite\": \"<string>\",\n  \"Email\": \"<string>\",\n  \"Fax\": \"<string>\",\n  \"CouldServeObituary\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9e509271-8380-49c1-a017-c29c598a1ce2",
+          "name": "Get a serving location",
+          "request": {
+            "name": "Get a serving location",
+            "description": {
+              "content": "Retrieve the current information stored about a serving location by its Tribute Store SERVING_LOCATION_ID. ShowOnWebSite corresponds to CouldServeObituary on the POST.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "locations",
+                ":servingLocationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "servingLocationId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dbc28dc5-8749-4947-8a7c-3e6b6031bb2d",
+              "name": "The serving location record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "locations",
+                    ":servingLocationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "servingLocationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": 2207,\n  \"LocationTypeId\": 452,\n  \"Name\": \"string\",\n  \"AddressId\": 4768,\n  \"WebSite\": \"string\",\n  \"Email\": \"string\",\n  \"ShowOnWebSite\": false,\n  \"Address1\": \"string\",\n  \"Address2\": \"string\",\n  \"City\": \"string\",\n  \"State\": \"string\",\n  \"PostalCode\": \"string\",\n  \"Country\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b65eeca1-0ace-40ca-8939-5568bef9f2a7",
+          "name": "List all serving locations",
+          "request": {
+            "name": "List all serving locations",
+            "description": {
+              "content": "Return a JSON array of all serving locations for the authenticated funeral home. Not recommended for the demo user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "locations",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d94f2cef-5d02-4f9d-867a-208948eca1d5",
+              "name": "Array of serving locations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "locations",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": 9409,\n    \"LocationTypeId\": 1487,\n    \"Name\": \"string\",\n    \"AddressId\": 7611,\n    \"WebSite\": \"string\",\n    \"Email\": \"string\",\n    \"ShowOnWebSite\": false,\n    \"Address1\": \"string\",\n    \"Address2\": \"string\",\n    \"City\": \"string\",\n    \"State\": \"string\",\n    \"PostalCode\": \"string\",\n    \"Country\": \"string\"\n  },\n  {\n    \"Id\": 2933,\n    \"LocationTypeId\": 5399,\n    \"Name\": \"string\",\n    \"AddressId\": 2356,\n    \"WebSite\": \"string\",\n    \"Email\": \"string\",\n    \"ShowOnWebSite\": true,\n    \"Address1\": \"string\",\n    \"Address2\": \"string\",\n    \"City\": \"string\",\n    \"State\": \"string\",\n    \"PostalCode\": \"string\",\n    \"Country\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3e055d2e-c4f1-41df-ba61-9cc29b5baf6a",
+          "name": "List location types",
+          "request": {
+            "name": "List location types",
+            "description": {
+              "content": "Return the predefined location type values.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "locations",
+                "getlocationtypes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3e9a382c-d6c1-4e8e-b6fb-0e68005d7c50",
+              "name": "Array of location types.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "locations",
+                    "getlocationtypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": 1,\n    \"Name\": \"Cemetery\"\n  },\n  {\n    \"Id\": 2,\n    \"Name\": \"Church\"\n  },\n  {\n    \"Id\": 3,\n    \"Name\": \"Funeral Home\"\n  },\n  {\n    \"Id\": 4,\n    \"Name\": \"Memorial\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tributecenteronline.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7d3d3236-7a26-4a8b-93e1-6e9e668e26e9",
+    "name": "Tribute Store Authentication Serving Locations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Tribute Store API is a REST-style JSON API from Tribute Technology for partners who integrate funeral-home case-management systems with the Tribute Store. It lets an integrator authenticate a funeral home, push its serving locations (rooftops), and push obituary cases (the deceased, their obituary text, service events, and a photo). Each successfully posted obituary automatically provisions a personalized Tribute Store page for the deceased, reachable at the store base URL with an ?oId={OBITUARY_ID} query string.\n\nAccess is partner-gated. Tribute Technology issues each integrator a {Provider} credential plus an IP allowlist, and issues each funeral home a {HostName, UserName, Password} triple. The triple is exchanged at the token endpoint for a short-lived HTML bearer token that scopes all subsequent requests to that funeral home.\n\nThis document was modeled from the public \"Tribute Store API Documentation 1.1\" (updated March 25, 2019). Field lists and endpoints are taken verbatim from that document; response object schemas beyond the documented sample fields are omitted rather than fabricated.\n\nContact Support:\n Name: Tribute Technology",
+      "type": "text/plain"
+    }
+  }
+}

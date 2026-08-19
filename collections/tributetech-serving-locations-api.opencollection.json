@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tribute Store Authentication Serving Locations API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Serving Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create or update a serving location (rooftop)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tributecenteronline.com/api/external-location/post",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Push a funeral-home serving location (rooftop). The Id is your application's unique identifier for the location; posting a previously used Id updates the existing record, a new Id creates one. Returns the Tribute Store SERVING_LOCATION_ID on success."
+        },
+        {
+          "info": {
+            "name": "Get a serving location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tributecenteronline.com/api/locations/:servingLocationId",
+            "params": [
+              {
+                "name": "servingLocationId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the current information stored about a serving location by its Tribute Store SERVING_LOCATION_ID. ShowOnWebSite corresponds to CouldServeObituary on the POST."
+        },
+        {
+          "info": {
+            "name": "List all serving locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tributecenteronline.com/api/locations/"
+          },
+          "docs": "Return a JSON array of all serving locations for the authenticated funeral home. Not recommended for the demo user."
+        },
+        {
+          "info": {
+            "name": "List location types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tributecenteronline.com/api/locations/getlocationtypes"
+          },
+          "docs": "Return the predefined location type values."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

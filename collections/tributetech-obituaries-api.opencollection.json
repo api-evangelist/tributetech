@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tribute Store Authentication Obituaries API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Obituaries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create or update an obituary case",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tributecenteronline.com/api/external-case/post",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Push an obituary case for the deceased, including name, birth/death dates, obituary text, service events, and an optional base64 photo thumbnail. CaseId is your unique identifier and acts as an add/update key. Returns the Tribute Store OBITUARY_ID on success."
+        },
+        {
+          "info": {
+            "name": "Get an obituary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tributecenteronline.com/api/obituaries/GetObituary/:obituaryId",
+            "params": [
+              {
+                "name": "obituaryId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the fully specified obituary object by its Tribute Store OBITUARY_ID (returned from a successful external-case post). The full object schema is not enumerated in the source documentation."
+        },
+        {
+          "info": {
+            "name": "List obituary summaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tributecenteronline.com/api/obituaries",
+            "params": [
+              {
+                "name": "$orderby",
+                "value": "",
+                "type": "query",
+                "description": "OData ordering, for example: DeathDate desc"
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return a JSON array of obituary summary objects (id, image URL, name, birth/death dates). Supports standard OData query options for paging and sorting."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
