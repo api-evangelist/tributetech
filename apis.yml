@@ -13,6 +13,18 @@ description: Tribute Technology is a funeral-home technology company serving ove
   deceased. Access requires a Provider credential, an IP allowlist, and a
   per-funeral-home HostName/UserName/Password triple exchanged for a bearer token;
   there is no public self-service developer portal.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
