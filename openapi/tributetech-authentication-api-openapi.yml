@@ -78,6 +78,12 @@ paths:
                 $ref: '#/components/schemas/TokenError'
 components:
   schemas:
+    TokenError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: unsupported_grant_type
     TokenResponse:
       type: object
       properties:
@@ -89,12 +95,6 @@ components:
         expires_in:
           type: integer
           description: Token lifetime in seconds.
-    TokenError:
-      type: object
-      properties:
-        error:
-          type: string
-          example: unsupported_grant_type
   securitySchemes:
     bearerAuth:
       type: http

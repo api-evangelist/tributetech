@@ -100,6 +100,28 @@ paths:
                   $ref: '#/components/schemas/ObituarySummary'
 components:
   schemas:
+    ObituarySummary:
+      type: object
+      properties:
+        Id:
+          type: integer
+          description: The Tribute Store OBITUARY_ID.
+        ImageUrl:
+          type: string
+        Name:
+          type: string
+        FirstName:
+          type: string
+        MiddleName:
+          type: string
+        LastName:
+          type: string
+        BirthDate:
+          type: string
+          format: date-time
+        DeathDate:
+          type: string
+          format: date-time
     ExternalCase:
       type: object
       required:
@@ -140,28 +162,6 @@ components:
           default: false
         IsPublished:
           type: boolean
-    ObituarySummary:
-      type: object
-      properties:
-        Id:
-          type: integer
-          description: The Tribute Store OBITUARY_ID.
-        ImageUrl:
-          type: string
-        Name:
-          type: string
-        FirstName:
-          type: string
-        MiddleName:
-          type: string
-        LastName:
-          type: string
-        BirthDate:
-          type: string
-          format: date-time
-        DeathDate:
-          type: string
-          format: date-time
     ServiceEvent:
       type: object
       required:
@@ -180,6 +180,11 @@ components:
           format: date-time
         Location:
           $ref: '#/components/schemas/ServiceLocation'
+    Message:
+      type: object
+      properties:
+        Message:
+          type: string
     ServiceLocation:
       type: object
       required:
@@ -203,11 +208,6 @@ components:
         PostalCode:
           type: string
         Phone:
-          type: string
-    Message:
-      type: object
-      properties:
-        Message:
           type: string
   securitySchemes:
     bearerAuth:

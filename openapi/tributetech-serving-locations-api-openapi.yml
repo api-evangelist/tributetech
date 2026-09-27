@@ -143,6 +143,13 @@ components:
       properties:
         Message:
           type: string
+    LocationType:
+      type: object
+      properties:
+        Id:
+          type: integer
+        Name:
+          type: string
     ExternalLocation:
       type: object
       required:
@@ -193,13 +200,6 @@ components:
         CouldServeObituary:
           type: boolean
           description: Whether obituaries will be attached. Should be true.
-    LocationType:
-      type: object
-      properties:
-        Id:
-          type: integer
-        Name:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http
