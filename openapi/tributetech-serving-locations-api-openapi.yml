@@ -107,6 +107,13 @@ paths:
                 Name: Memorial
 components:
   schemas:
+    LocationType:
+      type: object
+      properties:
+        Id:
+          type: integer
+        Name:
+          type: string
     Location:
       type: object
       properties:
@@ -142,13 +149,6 @@ components:
       type: object
       properties:
         Message:
-          type: string
-    LocationType:
-      type: object
-      properties:
-        Id:
-          type: integer
-        Name:
           type: string
     ExternalLocation:
       type: object

@@ -100,6 +100,53 @@ paths:
                   $ref: '#/components/schemas/ObituarySummary'
 components:
   schemas:
+    ServiceEvent:
+      type: object
+      required:
+      - Type
+      - StartTime
+      - Location
+      properties:
+        Type:
+          type: string
+          description: Event type, for example Visitation.
+        StartTime:
+          type: string
+          format: date-time
+        EndTime:
+          type: string
+          format: date-time
+        Location:
+          $ref: '#/components/schemas/ServiceLocation'
+    Message:
+      type: object
+      properties:
+        Message:
+          type: string
+    ServiceLocation:
+      type: object
+      required:
+      - Name
+      - Address1
+      - City
+      - State
+      - PostalCode
+      - Phone
+      properties:
+        Name:
+          type: string
+        Address1:
+          type: string
+        Address2:
+          type: string
+        City:
+          type: string
+        State:
+          type: string
+        PostalCode:
+          type: string
+        Phone:
+          type: string
     ObituarySummary:
       type: object
       properties:
@@ -162,53 +209,6 @@ components:
           default: false
         IsPublished:
           type: boolean
-    ServiceEvent:
-      type: object
-      required:
-      - Type
-      - StartTime
-      - Location
-      properties:
-        Type:
-          type: string
-          description: Event type, for example Visitation.
-        StartTime:
-          type: string
-          format: date-time
-        EndTime:
-          type: string
-          format: date-time
-        Location:
-          $ref: '#/components/schemas/ServiceLocation'
-    Message:
-      type: object
-      properties:
-        Message:
-          type: string
-    ServiceLocation:
-      type: object
-      required:
-      - Name
-      - Address1
-      - City
-      - State
-      - PostalCode
-      - Phone
-      properties:
-        Name:
-          type: string
-        Address1:
-          type: string
-        Address2:
-          type: string
-        City:
-          type: string
-        State:
-          type: string
-        PostalCode:
-          type: string
-        Phone:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http
