@@ -107,13 +107,6 @@ paths:
                 Name: Memorial
 components:
   schemas:
-    LocationType:
-      type: object
-      properties:
-        Id:
-          type: integer
-        Name:
-          type: string
     Location:
       type: object
       properties:
@@ -200,6 +193,13 @@ components:
         CouldServeObituary:
           type: boolean
           description: Whether obituaries will be attached. Should be true.
+    LocationType:
+      type: object
+      properties:
+        Id:
+          type: integer
+        Name:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

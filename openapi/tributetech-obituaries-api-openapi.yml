@@ -100,24 +100,28 @@ paths:
                   $ref: '#/components/schemas/ObituarySummary'
 components:
   schemas:
-    ServiceEvent:
+    ObituarySummary:
       type: object
-      required:
-      - Type
-      - StartTime
-      - Location
       properties:
-        Type:
+        Id:
+          type: integer
+          description: The Tribute Store OBITUARY_ID.
+        ImageUrl:
           type: string
-          description: Event type, for example Visitation.
-        StartTime:
+        Name:
+          type: string
+        FirstName:
+          type: string
+        MiddleName:
+          type: string
+        LastName:
+          type: string
+        BirthDate:
           type: string
           format: date-time
-        EndTime:
+        DeathDate:
           type: string
           format: date-time
-        Location:
-          $ref: '#/components/schemas/ServiceLocation'
     Message:
       type: object
       properties:
@@ -147,28 +151,24 @@ components:
           type: string
         Phone:
           type: string
-    ObituarySummary:
+    ServiceEvent:
       type: object
+      required:
+      - Type
+      - StartTime
+      - Location
       properties:
-        Id:
-          type: integer
-          description: The Tribute Store OBITUARY_ID.
-        ImageUrl:
+        Type:
           type: string
-        Name:
-          type: string
-        FirstName:
-          type: string
-        MiddleName:
-          type: string
-        LastName:
-          type: string
-        BirthDate:
+          description: Event type, for example Visitation.
+        StartTime:
           type: string
           format: date-time
-        DeathDate:
+        EndTime:
           type: string
           format: date-time
+        Location:
+          $ref: '#/components/schemas/ServiceLocation'
     ExternalCase:
       type: object
       required:
