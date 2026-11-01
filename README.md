@@ -1,4 +1,4 @@
-# Tribute Technology (tributetech)
+# Tribute Technology
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,79 +64,121 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Tribute Technology is a funeral-home technology company (Middleton, Wisconsin) serving over 9,000 funeral homes across the US and Canada. Its platform spans obituary publishing, memorial websites, funeral-home management software, online payments and funeral funding (Tribute Pay), and e-commerce (flowers and personalized products) through the Tribute Store.
+Tribute Technology is a funeral-home technology company serving over 9,000 funeral homes across the US and Canada with obituary publishing, memorial websites, funeral-home management software, online payments (Tribute Pay), and e-commerce (flowers and personalized products) through the Tribute Store. For partners, Tribute Technology exposes the Tribute Store API - a partner-gated, REST-style JSON API that lets funeral-home case-management systems authenticate a funeral home, push its serving locations (rooftops), and push obituary cases that automatically provision a personalized Tribute Store page for each deceased. Access requires a Provider credential, an IP allowlist, and a per-funeral-home HostName/UserName/Password triple exchanged for a bearer token; there is no public self-service developer portal.
 
-For partners, Tribute Technology exposes the **Tribute Store API** - a partner-gated, REST-style JSON API that lets funeral-home case-management systems authenticate a funeral home, push its serving locations (rooftops), and push obituary cases. Each successfully posted obituary automatically provisions a personalized Tribute Store page for the deceased, reachable at the store base URL with a `?oId={OBITUARY_ID}` query string.
+**Areas:** Funeral Technology · Obituaries · Memorials · Funeral Homes · E-Commerce · Death Care · Case Management
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/tributetech/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/tributetech/refs/heads/main/apis.yml)
+## Tribute Technology on APIs.io
 
-## Access Model
+Everything profiled for Tribute Technology is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/tributetech/](https://apis.io/providers/tributetech/)** — or go straight to one of the APIs or properties below.
 
-This is **not** a public, self-service API. There is no open developer portal, signup, or API-key issuance on tributetech.com. Access is provisioned by Tribute Technology through a partner/integration agreement:
+### APIs (3)
 
-- An integrator receives a `{Provider}` credential string plus an **IP allowlist** - requests must originate from an allowlisted server.
-- Each funeral home receives a `{HostName, UserName, Password}` triple.
-- The triple is exchanged at `POST /token/` for a short-lived **HTML bearer token** that scopes all subsequent requests to that one funeral home.
+- [Tribute Technology Authentication API](https://apis.io/apis/tributetech/tributetech-authentication-api/) — Exchange a funeral-home credential triple for a bearer token.
+- [Tribute Technology Obituaries API](https://apis.io/apis/tributetech/tributetech-obituaries-api/) — Obituary cases pushed to the Tribute Store, and their retrieval.
+- [Tribute Technology Serving Locations API](https://apis.io/apis/tributetech/tributetech-serving-locations-api/) — Funeral-home rooftops (serving locations) that obituaries attach to.
 
-The endpoint surface documented here is drawn verbatim from the publicly circulated **"Tribute Store API Documentation 1.1"** (updated March 25, 2019), a PDF distributed to integration partners. The API is not callable without provisioned credentials and an allowlisted IP, so the endpoints in the OpenAPI definition are marked `endpointsModeled: true`. Response object schemas beyond the documented sample fields are omitted rather than fabricated.
+### Published properties
 
-**Base URLs** (per the 2019 documentation): production `http://api.tributecenteronline.com/`, development `http://api.demo.tributecenteronline.com/`. The definitions here use `https://` for the base; confirm the current scheme during partner onboarding.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Tags
+#### Agentic access (1)
 
-- Funeral Technology
-- Obituaries
-- Memorials
-- Funeral Homes
-- E-commerce
-- Death Care
-- Case Management
+Which operations an agent can call, which act, and which need a human in the loop.
 
-## Timestamps
+- [Tributetech Agentic Access](https://apis.io/agentic-access/tributetech/tributetech-agentic-access/)
 
-- **Created:** 2026-07-03
-- **Modified:** 2026-07-03
+#### Collections (4)
 
-## APIs
+Postman and Open Collection request collections.
 
-### Tribute Store Authentication API
+- [Tribute Store API](https://apis.io/collections/tributetech/open-tributetech/)
+- [Tribute Store Authentication API](https://apis.io/collections/tributetech/open-tributetech-authentication-api/)
+- [Tribute Store Authentication Obituaries API](https://apis.io/collections/tributetech/open-tributetech-obituaries-api/)
+- [Tribute Store Authentication Serving Locations API](https://apis.io/collections/tributetech/open-tributetech-serving-locations-api/)
 
-Exchange a funeral home's HostName/UserName/Password triple (scoped to your integrator Provider credential) for a short-lived HTML bearer token via `POST /token/`. The token identifies the funeral home on all other endpoints and requires an allowlisted source IP.
+#### Security (2)
 
-- **Base URL:** `https://api.tributecenteronline.com`
-- Endpoints: `POST /token/`
+Authentication, trust centre, and vulnerability disclosure.
 
-### Tribute Store Serving Locations API
+- [Tributetech Authentication](https://apis.io/security/tributetech/tributetech-authentication/)
+- [Tributetech Domain Security](https://apis.io/security/tributetech/tributetech-domain-security/)
 
-Create or update funeral-home serving locations (rooftops) that obituaries attach to, retrieve a location, list all locations, and list the predefined location types.
+#### Plans and pricing (1)
 
-- **Base URL:** `https://api.tributecenteronline.com`
-- Endpoints: `POST /api/external-location/post`, `GET /api/locations/{id}`, `GET /api/locations/`, `GET /api/locations/getlocationtypes`
+Published plans, tiers and prices.
 
-### Tribute Store Obituaries API
+- [Tributetech Plans Pricing](https://apis.io/plans/tributetech/tributetech-plans-pricing/)
 
-Push obituary cases - the deceased, obituary text, service events (visitation, service), and a base64 photo thumbnail - using your `CaseId` as an add/update key. Each success returns a Tribute Store `OBITUARY_ID` and auto-provisions a personalized store page. Retrieve a single obituary or list obituary summaries with OData paging/sorting (`$orderby`, `$skip`, `$top`).
+#### Rate limits (1)
 
-- **Base URL:** `https://api.tributecenteronline.com`
-- Endpoints: `POST /api/external-case/post`, `GET /api/obituaries/GetObituary/{id}`, `GET /api/obituaries`
+Published request limits.
 
-## Artifacts
+- [Tributetech Rate Limits](https://apis.io/rate-limits/tributetech/tributetech-rate-limits/)
 
-- [OpenAPI](openapi/tributetech-openapi.yml)
-- [Postman Collection](collections/tributetech.postman_collection.json)
-- [Open Collection](collections/tributetech.opencollection.json)
-- [Plans / Pricing](plans/tributetech-plans-pricing.yml)
-- [Rate Limits](rate-limits/tributetech-rate-limits.yml)
-- [FinOps](finops/tributetech-finops.yml)
-- [Review](review.yml)
+#### FinOps (1)
 
-## Common Properties
+What the API costs to run, by operation.
 
-- [LinkedIn](https://www.linkedin.com/company/tributetechnology)
+- [Tributetech Finops](https://apis.io/finops/tributetech/tributetech-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.tributetech.com/)
-- [Documentation (Tribute Store API 1.1 PDF)](https://awheeler.funeraltechweb2.com/additional-service-info/file/3/Tribute%20Store%20API%20Documentation%201.1.pdf)
+- [Documentation](https://awheeler.funeraltechweb2.com/additional-service-info/file/3/Tribute%20Store%20API%20Documentation%201.1.pdf)
+- [Blog](https://www.tributetech.com/blog)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 27.8** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 50.2 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 25.0 |
+| Access clarity | 7.9 |
+
+**Agent readiness 20.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/tributetech/](https://apis.io/providers/tributetech/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Tribute Technology: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/tributetech/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
